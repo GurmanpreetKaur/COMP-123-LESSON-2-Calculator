@@ -13,7 +13,7 @@ using System.Windows.Forms;
  * student number - 300933392
  * date - 3 august , 2017
  * description - this is calculator demo project 
- * version 0.6- Added private _clear method
+ * version 0.7- Refactored the CalculatorButton_Click event handler
  * */
 namespace COMP_123_LESSON_2_Calculator
 {
@@ -63,16 +63,36 @@ namespace COMP_123_LESSON_2_Calculator
         private void CalculatorButon_Click(object sender, EventArgs e)
         {
             Button calculatorButton = (Button)sender; // or sender as Button (this is called downcasting)
-            if((this._idDecimalClicked) && (calculatorButton.Text=="."))
+
+            if ((this.IsDecimalClicked) && (calculatorButton.Text == "."))
             {
-                return; 
+                return;
             }
-            if(calculatorButton.Text == ".")
+
+            if (calculatorButton.Text == ".")
             {
-                this._idDecimalClicked = true;
+                this.IsDecimalClicked = true;
             }
-            Result.Text += calculatorButton.Text;
-        // Debug.WriteLine("A Calculator Button was clicked");
+
+
+            if (Result.Text == "0")
+            {
+                if (calculatorButton.Text == ".")
+                {
+                    Result.Text += calculatorButton.Text;
+                }
+                else
+                {
+                    Result.Text = calculatorButton.Text;
+                }
+            }
+            else
+            {
+                Result.Text += calculatorButton.Text;
+            }
+
+
+            // Debug.WriteLine("A Calculator Button was clicked");
         }
 
 
@@ -98,7 +118,8 @@ namespace COMP_123_LESSON_2_Calculator
         /// </summary>
         private void _clear()
         {
-            throw new NotImplementedException();
+            this.IsDecimalClicked = false;
+            Result.Text = "0";
         }
 
 
@@ -109,7 +130,7 @@ namespace COMP_123_LESSON_2_Calculator
         /// <param name="e"></param>
         private void Calculator_Load(object sender, EventArgs e)
         {
-            this.IsDecimalClicked = false;
+            this._clear();
         }
     }
 }
