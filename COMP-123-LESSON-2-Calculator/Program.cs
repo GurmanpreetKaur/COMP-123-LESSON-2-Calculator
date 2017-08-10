@@ -8,7 +8,7 @@ using System.Windows.Forms;
  * student number - 300933392
  * date - 3 august , 2017
  * description - this is calculator demo project 
- * version 0.1- created the project 
+ * version 0.2- Started SplashForm first 
  * */
 namespace COMP_123_LESSON_2_Calculator
 {
@@ -22,7 +22,7 @@ namespace COMP_123_LESSON_2_Calculator
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Calculator());
+            Application.Run(new SplashForm());
         }
     }
 }
