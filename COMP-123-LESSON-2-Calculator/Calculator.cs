@@ -13,12 +13,30 @@ using System.Windows.Forms;
  * student number - 300933392
  * date - 3 august , 2017
  * description - this is calculator demo project 
- * version 0.4- Created a shared event handler for the Operator Buutons 
+ * version 0.5- Added A form "Load" event handler
  * */
 namespace COMP_123_LESSON_2_Calculator
 {
     public partial class Calculator : Form
     {
+        //private instance variables 
+        private bool _idDecimalClicked;
+            //public properties 
+            public bool IsDecimalClicked
+        {
+            get
+            {
+                return this._idDecimalClicked;
+            }
+            set
+            {
+                this._idDecimalClicked = value;
+            }
+        }
+            //constructors
+            /// <summary>
+            /// this is the main constructor for the Calculator class
+            /// </summary>
         public Calculator()
         {
             InitializeComponent();
@@ -41,7 +59,10 @@ namespace COMP_123_LESSON_2_Calculator
         private void CalculatorButon_Click(object sender, EventArgs e)
         {
             Button calculatorButton = (Button)sender; // or sender as Button (this is called downcasting)
-
+            if((calculatorButton.Text==".") && (this._idDecimalClicked))
+            {
+                return; 
+            }
             Result.Text += calculatorButton.Text;
         // Debug.WriteLine("A Calculator Button was clicked");
         }
@@ -52,7 +73,16 @@ namespace COMP_123_LESSON_2_Calculator
         /// <param name="e"></param>
         private void OperatorButton_Click(object sender, EventArgs e)
         {
-
+            Button operatorButton = sender as Button; //downcasting 
+        }
+        /// <summary>
+        /// this is the event handler for the "Load" event 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void Calculator_Load(object sender, EventArgs e)
+        {
+            this.IsDecimalClicked = false;
         }
     }
 }
