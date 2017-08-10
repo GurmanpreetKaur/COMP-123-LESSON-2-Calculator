@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -12,7 +13,7 @@ using System.Windows.Forms;
  * student number - 300933392
  * date - 3 august , 2017
  * description - this is calculator demo project 
- * version 0.2- Added the FormClosing event handler
+ * version 0.4- Created a shared event handler for the Operator Buutons 
  * */
 namespace COMP_123_LESSON_2_Calculator
 {
@@ -30,6 +31,28 @@ namespace COMP_123_LESSON_2_Calculator
         private void Calculator_FormClosing(object sender, FormClosingEventArgs e)
         {
             Application.Exit();
+        }
+        /// <summary>
+        /// this is shared event handler for the calculator buttons
+        /// not including  the operator buttons
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void CalculatorButon_Click(object sender, EventArgs e)
+        {
+            Button calculatorButton = (Button)sender; // or sender as Button (this is called downcasting)
+
+            Result.Text += calculatorButton.Text;
+        // Debug.WriteLine("A Calculator Button was clicked");
+        }
+        /// <summary>
+        /// this is a shared event handler for the Operator Buttons of the calculator
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OperatorButton_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

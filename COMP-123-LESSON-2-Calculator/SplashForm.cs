@@ -45,7 +45,7 @@ namespace COMP_123_LESSON_2_Calculator
         private void SplashFormTimer_Tick(object sender, EventArgs e)
         {
             
-            this.Calculator+.Show();
+            this.Calculator.Show();
             this.Hide();
 
             SplashFormTimer.Enabled = false; //turn timer off
